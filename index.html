@@ -21,10 +21,10 @@
 			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com/");
 		    myFirebaseRef.child("lastIncident").on("value", function(snapshot) {
 			  var today = new Date();
-			  var lastIncident = new Date(snapshot.val());
 			  if(snapshot.val() != null) {
-			  	var timeDiff = Math.abs(today.getTime() - lastIncident.getTime());
-			  	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+			  	var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+			  	var lastIncident = new Date(snapshot.val());
+			  	var diffDays = Math.round(Math.abs((today.getTime() - lastIncident.getTime())/(oneDay)));
 			  	$('#day').text(diffDays);
 			  } else {
 			  	$('#day').text("(unable to get last incident)");
