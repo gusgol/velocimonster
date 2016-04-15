@@ -18,7 +18,7 @@
 			<h2>days since the last velociraptor related incident</h2>
 		</div>
 		<script type="text/javascript">
-			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com");
+			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com/");
 		    myFirebaseRef.child("lastIncident").on("value", function(snapshot) {
 			  var today = new Date();
 			  var lastIncident = new Date(snapshot.val());

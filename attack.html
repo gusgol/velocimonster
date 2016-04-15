@@ -14,15 +14,14 @@
 			<button id="report">Report Incident</button>
 		</div>
 		<script type="text/javascript">
-			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com");
-		    var today = new Date();
-		    $( "#report" ).click(function() {
-			  myFirebaseRef.set({
-			  	lastIncident: today
-			  });
-			  $('#message').text("Thx, better luck next time!");
+			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com/");
+			var today = new Date();
+			$( "#report" ).click(function() {
+				myFirebaseRef.set({
+					lastIncident: today.getTime()
+				});
+				$('#message').text("Thx, better luck next time!");
 			});
-			
 		</script>
 </body>
 </html>
