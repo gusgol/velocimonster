@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dell Velociraptor Incident Counter</title>
+	<link rel='shortcut icon' href='./images/velociraptor.jpg' type='image/x-icon'/ >
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+<body>
+
+		<div class="content">
+			<h1>This is a velociraptor free workspace</h1>
+			<img src="./images/velociraptor.jpg">
+			<h2 class="footer">It has proudly been</h2>
+			<h1 id="day" class="day">-</h1>
+			<h2>days since the last velociraptor related incident</h2>
+		</div>
+		<script type="text/javascript">
+			var myFirebaseRef = new Firebase("https://velocimonster.firebaseio.com");
+		    myFirebaseRef.child("lastIncident").on("value", function(snapshot) {
+			  var today = new Date();
+			  var lastIncident = new Date(snapshot.val());
+			  if(snapshot.val() != null) {
+			  	var timeDiff = Math.abs(today.getTime() - lastIncident.getTime());
+			  	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+			  	$('#day').text(diffDays);
+			  } else {
+			  	$('#day').text("(unable to get last incident)");
+			  }
+			});
+		</script>
+</body>
+</html>
